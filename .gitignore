@@ -1,0 +1,36 @@
+/target/
+*/target/
+bin/
+gen/
+log/
+.settings/
+.DS_Store
+proguard/
+#build.xml
+#build.properties
+ant.properties
+local.properties
+pkgs/
+output*/
+temp/
+classes/
+*/lib/*
+
+# for IntelliJ IDEA description files
+*.iml
+*/*.iml/
+*/*.iml
+.idea
+.idea/*
+*/.idea/*
+*/.idea/*
+*.idb
+*/overlays/*
+
+
+# other files
+*~
+*.swp
+*.orig
+.classpath
+

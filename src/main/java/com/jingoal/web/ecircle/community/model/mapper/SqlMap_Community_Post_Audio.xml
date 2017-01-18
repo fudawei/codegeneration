@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="community_post_audio">
+
+    <resultMap id="communityPostAudioMap" type="CommunityPostAudio">
+        <result column="community_id" property="communityId" />
+        <result column="file_id" property="fileId" />
+        <result column="audio_size" property="audioSize" />
+        <result column="audio_second" property="audioSecond" />
+        <result column="audio_minute" property="audioMinute" />
+        <result column="audio_title" property="audioTitle" />
+        <result column="auduo_note" property="auduoNote" />
+    </resultMap>
+
+
+    <insert id="add"  useGeneratedKeys="true" keyProperty="id" parameterType="CommunityPostAudio">
+       INSERT
+       INTO
+          community_post_audio
+        (
+          id,
+          community_id,
+          file_id,
+          audio_size,
+          audio_second,
+          audio_minute,
+          audio_title,
+          auduo_note
+        )
+      VALUES
+        (
+          #{id},
+          #{communityId},
+          #{fileId},
+          #{audioSize},
+          #{audioSecond},
+          #{audioMinute},
+          #{audioTitle},
+          #{auduoNote}
+        )
+    </insert>
+
+    <update id="update"  parameterType="CommunityPostAudio">
+        UPDATE
+          community_post_audio
+        SET
+          community_id = #{communityId},
+          file_id = #{fileId},
+          audio_size = #{audioSize},
+          audio_second = #{audioSecond},
+          audio_minute = #{audioMinute},
+          audio_title = #{audioTitle},
+          auduo_note = #{auduoNote}
+        WHERE
+          id = #{id}
+    </update>
+
+    <update id="updatePropertys"  parameterType="CommunityPostAudio">
+        UPDATE
+    community_post_audio
+        <trim prefix="set" suffixOverrides=",">
+          <if test="community_id!=null">
+            community_id = #{communityId},
+          </if>
+          <if test="file_id!=null">
+            file_id = #{fileId},
+          </if>
+          <if test="audio_size!=null">
+            audio_size = #{audioSize},
+          </if>
+          <if test="audio_second!=null">
+            audio_second = #{audioSecond},
+          </if>
+          <if test="audio_minute!=null">
+            audio_minute = #{audioMinute},
+          </if>
+          <if test="audio_title!=null">
+            audio_title = #{audioTitle},
+          </if>
+          <if test="auduo_note!=null">
+            auduo_note = #{auduoNote},
+          </if>
+       </trim>
+        WHERE
+         id = #{id}
+    </update>
+
+    <update id="del"  parameterType="java.lang.Long">
+        DELETE
+        FROM
+          community_post_audio
+        WHERE
+          id = #{id}
+    </update>
+
+    <select id="get" parameterType="java.lang.Long" resultMap="communityPostAudioMap">
+        SELECT
+          id,
+            community_id,
+            file_id,
+            audio_size,
+            audio_second,
+            audio_minute,
+            audio_title,
+            auduo_note
+        FROM
+            community_post_audio
+        WHERE
+            id = #{value}
+    </select>
+    <select id="getByPage" parameterType="java.util.Map" resultMap="communityPostAudioMap">
+        SELECT
+           id,
+           community_id,
+           file_id,
+           audio_size,
+           audio_second,
+           audio_minute,
+           audio_title,
+           auduo_note
+        FROM
+           community_post_audio
+        LIMIT #{skip},#{size}
+    </select>
+    <select id="getTotal" resultType="java.lang.Long" >
+        SELECT
+          COUNT(1)
+        FROM
+          community_post_audio
+    </select>
+</mapper>

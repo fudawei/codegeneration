@@ -57,7 +57,7 @@
     ${xml.tableName}
         <trim prefix="set" suffixOverrides=",">
     <#list xml.fields as field>
-          <if test="${field.name}!=null">
+          <if test="${field.property}!=null">
             ${field.name} = ${r'#{'}${field.property}${r'}'},
           </if>
     </#list>
